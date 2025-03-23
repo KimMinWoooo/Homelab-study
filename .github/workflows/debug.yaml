@@ -33,7 +33,7 @@ jobs:
           docker --version
         continue-on-error: true
 
-      - name : Install Docker 
+      - name : Installing Docker 
         #if: failure()
         run: |
           curl -fsSL https://get.docker.com | sh
