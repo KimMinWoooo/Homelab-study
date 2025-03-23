@@ -27,6 +27,18 @@ jobs:
           cp -rf ~/.ssh/temp_keys ~/.ssh/authorized_keys
           ls -al ~/.ssh
 
+      - name : Check docker version
+        id: docker_version
+        run: |
+          docker --version
+        continue-on-error: true
+
+      - name : Install Docker 
+        #if: failure()
+        run: |
+          curl -fsSL https://get.docker.com | sh
+          docker --version
+
       - name: Checkout
         uses: actions/checkout@v4
       
