@@ -1,2 +1,24 @@
 name: CI - Debug
-run-name : Debug - ${{ github.ref_name ||-- github.ref }}
+
+run-name: Debug - ${{ github.ref_name || github.ref}}
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - test/homelab-study
+
+jobs:
+  ci_debugger:
+    runs-on:
+      - master
+
+    steps:
+      - name: Template
+        run: |
+          echo "Hello, world!"
+          echo " This is device running ${{ runner.os }}!"
+          echo "architecture is ${dpkg --print-architecture}"
+      - name: Checkout
+        uses: actions/checkout@v4
+      
